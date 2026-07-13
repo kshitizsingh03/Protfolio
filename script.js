@@ -1,27 +1,28 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initPortfolio() {
   
   // ==========================================================================
   // Loader Fade-Out
   // ==========================================================================
   const loader = document.getElementById('loader');
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      loader.style.opacity = '0';
-      setTimeout(() => {
-        loader.style.visibility = 'hidden';
-      }, 600);
-    }, 1000);
-  });
-
-  // Fallback for loader
-  setTimeout(() => {
-    if (loader.style.opacity !== '0') {
+  
+  function hideLoader() {
+    if (loader) {
       loader.style.opacity = '0';
       setTimeout(() => {
         loader.style.visibility = 'hidden';
       }, 600);
     }
-  }, 3500);
+  }
+
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 600);
+  } else {
+    window.addEventListener('load', () => {
+      setTimeout(hideLoader, 600);
+    });
+    // Fallback for loader
+    setTimeout(hideLoader, 2500);
+  }
 
 
   // ==========================================================================
@@ -435,4 +436,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPortfolio);
+} else {
+  initPortfolio();
+}
