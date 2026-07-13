@@ -290,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       dotsContainer.appendChild(dot);
+    });
   }
 
   // Horizontal Carousel Math
