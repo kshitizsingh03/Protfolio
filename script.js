@@ -23,45 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 3500);
 
-  // ==========================================================================
-  // Custom Cursor Logic
-  // ==========================================================================
-  const cursorGlow = document.getElementById('customCursor');
-  const cursorDot = document.getElementById('cursorDot');
-
-  document.addEventListener('mousemove', (e) => {
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-    
-    cursorGlow.animate({
-      left: `${mouseX}px`,
-      top: `${mouseY}px`
-    }, { duration: 500, fill: "forwards" });
-  });
-
-  // Track hover states for interactive elements
-  function updateHoverListeners() {
-    const hoverables = document.querySelectorAll('a, button, label, .slider-item, .slider-arrow, .indicator-dot, .dot');
-    hoverables.forEach(item => {
-      item.removeEventListener('mouseenter', addHoverState);
-      item.removeEventListener('mouseleave', removeHoverState);
-      item.addEventListener('mouseenter', addHoverState);
-      item.addEventListener('mouseleave', removeHoverState);
-    });
-  }
-
-  function addHoverState() {
-    document.body.classList.add('hovering');
-  }
-
-  function removeHoverState() {
-    document.body.classList.remove('hovering');
-  }
-
-  updateHoverListeners();
 
   // ==========================================================================
   // Mobile Navigation Toggle
@@ -329,9 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       dotsContainer.appendChild(dot);
-    });
-
-    updateHoverListeners();
   }
 
   // Horizontal Carousel Math
