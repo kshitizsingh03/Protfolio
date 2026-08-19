@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poster Gallery | Kshitiz Singh</title>
+  <meta name="description" content="Full poster gallery of Kshitiz Singh — graphic design, social media creatives, branding, marketing campaigns.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   GALLERY PAGE CSS (self-contained, mirrors main theme tokens)
+   ============================================================ */
+:root {
+  --bg:          #F4F0FF;
+  --bg2:         #FFFFFF;
+  --bg3:         #EDE9FE;
+  --primary:     #7C3AED;
+  --primary-d:   #5B21B6;
+  --primary-l:   #EDE9FE;
+  --secondary:   #0891B2;
+  --text:        #1E1B4B;
+  --text-b:      #374151;
+  --text-m:      #6B7280;
+  --border:      rgba(124,58,237,0.14);
+  --shadow:      rgba(124,58,237,0.10);
+  --navbar-bg:   rgba(244,240,255,0.88);
+  --card-bg:     #FFFFFF;
+  --overlay-bg:  rgba(9,9,11,0.97);
+  --font-d:      'Space Grotesk', sans-serif;
+  --font-b:      'Outfit', sans-serif;
+  --tr:          all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="dark"] {
+  --bg:        #09090B;
+  --bg2:       #111113;
+  --bg3:       #18181B;
+  --primary-l: #2D1B69;
+  --primary-d: #A78BFA;
+  --text:      #FFFFFF;
+  --text-b:    #D4D4D8;
+  --text-m:    #A1A1AA;
+  --border:    rgba(255,255,255,0.07);
+  --shadow:    rgba(0,0,0,0.4);
+  --navbar-bg: rgba(9,9,11,0.88);
+  --card-bg:   #18181B;
+}
+
+*  { box-sizing:border-box; margin:0; padding:0; }
+html { font-family:var(--font-b); font-size:16px; background:var(--bg); color:var(--text); overflow-x:hidden; }
+body { min-height:100vh; background:var(--bg); transition:background 0.4s,color 0.4s; }
+
+/* --- Orbs --- */
+.orb { position:fixed; border-radius:50%; filter:blur(90px); opacity:0.15; pointer-events:none; z-index:0; }
+[data-theme="dark"] .orb { opacity:0.22; }
+.orb-a { width:420px;height:420px;background:var(--primary);top:-80px;right:-60px; animation:floatA 18s infinite alternate ease-in-out; }
+.orb-b { width:350px;height:350px;background:var(--secondary);bottom:10%;left:-80px; animation:floatB 22s infinite alternate ease-in-out; }
+@keyframes floatA { 0%{transform:translate(0,0)} 100%{transform:translate(50px,60px)} }
+@keyframes floatB { 0%{transform:translate(0,0)} 100%{transform:translate(-50px,-40px)} }
+
+/* --- Navbar --- */
+.g-nav { position:sticky; top:0; z-index:200; background:var(--navbar-bg); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+.g-nav-inner { max-width:1300px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; }
+.g-back { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-d); font-size:0.9rem; font-weight:600; color:var(--primary); text-decoration:none; background:var(--primary-l); border:1px solid rgba(124,58,237,0.22); padding:8px 18px; border-radius:20px; transition:var(--tr); }
+.g-back:hover { background:var(--primary); color:#fff; transform:translateX(-3px); }
+.g-back svg { flex-shrink:0; }
+.g-logo { font-family:var(--font-d); font-size:1.4rem; font-weight:700; color:var(--text); letter-spacing:-0.5px; text-decoration:none; }
+.g-logo span { color:var(--primary); }
+.g-theme-btn { width:38px;height:38px;border-radius:50%;background:var(--primary-l);border:1px solid var(--border);color:var(--primary);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr); }
+.g-theme-btn:hover { background:var(--primary);color:#fff;transform:rotate(20deg); }
+.g-theme-btn svg { width:17px;height:17px; }
+[data-theme="light"] .g-moon { display:none; }
+[data-theme="dark"]  .g-sun  { display:none; }
+
+/* --- Page header --- */
+.g-header { text-align:center; padding:56px 24px 36px; position:relative; z-index:1; }
+.g-header-tag { display:inline-block; background:var(--primary-l); border:1px solid rgba(124,58,237,0.22); color:var(--primary-d); padding:6px 16px; border-radius:20px; font-size:0.8rem; font-weight:600; font-family:var(--font-d); letter-spacing:0.3px; margin-bottom:16px; }
+.g-header h1 { font-family:var(--font-d); font-size:3rem; font-weight:800; letter-spacing:-2px; line-height:1.1; background:linear-gradient(135deg,var(--primary) 30%,var(--secondary) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; }
+.g-header p { color:var(--text-m); font-size:1.05rem; max-width:560px; margin:0 auto; }
+
+/* --- Filter bar --- */
+.g-filter-bar { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; padding:0 24px 36px; position:relative; z-index:1; }
+.filter-btn { padding:7px 18px; font-family:var(--font-d); font-size:0.82rem; font-weight:600; border-radius:20px; border:1px solid var(--border); background:var(--bg2); color:var(--text-m); cursor:pointer; transition:var(--tr); }
+.filter-btn:hover,.filter-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 4px 14px rgba(124,58,237,0.3); }
+
+/* --- Grid --- */
+.g-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; max-width:1300px; margin:0 auto; padding:0 24px 80px; position:relative; z-index:1; }
+
+/* --- Poster card --- */
+.g-card { border-radius:16px; overflow:hidden; background:var(--card-bg); border:1px solid var(--border); box-shadow:0 4px 18px var(--shadow); cursor:pointer; position:relative; transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.g-card img { width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s ease; }
+
+/* Hover: scale up + dim others via parent class */
+.g-card:hover { transform:scale(1.12) translateY(-6px); box-shadow:0 20px 50px rgba(124,58,237,0.22); border-color:var(--primary); z-index:10; }
+.g-card:hover img { transform:scale(1.06); }
+.g-grid.has-hover .g-card:not(:hover) { opacity:0.45; transform:scale(0.97); }
+
+/* Hover overlay */
+.g-card-overlay { position:absolute; top:0;left:0;width:100%;height:100%; background:linear-gradient(to top, rgba(9,9,11,0.88) 0%, rgba(9,9,11,0.15) 55%, transparent 100%); opacity:0; display:flex; flex-direction:column; justify-content:flex-end; padding:16px; transition:opacity 0.3s ease; z-index:2; }
+.g-card:hover .g-card-overlay { opacity:1; }
+.g-card-title { font-family:var(--font-d); font-size:0.9rem; font-weight:700; color:#fff; margin-bottom:3px; transform:translateY(6px); transition:transform 0.3s ease; }
+.g-card:hover .g-card-title { transform:translateY(0); }
+.g-card-cat { font-size:0.7rem; color:rgba(6,182,212,0.9); text-transform:uppercase; letter-spacing:1px; font-weight:600; transform:translateY(8px); transition:transform 0.35s ease; }
+.g-card:hover .g-card-cat { transform:translateY(0); }
+/* View icon center */
+.g-card-view-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); width:50px; height:50px; border-radius:50%; background:rgba(124,58,237,0.85); display:flex; align-items:center; justify-content:center; color:#fff; z-index:3; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.g-card:hover .g-card-view-icon { transform:translate(-50%,-50%) scale(1); }
+
+/* Hidden utility */
+.g-card.hidden-item { display:none; }
+
+/* ===========================================================
+   LIGHTBOX MODAL
+   =========================================================== */
+.g-lightbox { position:fixed; top:0;left:0;width:100%;height:100%; z-index:9999; display:none; justify-content:center; align-items:center; opacity:0; transition:opacity 0.35s ease; }
+.g-lightbox.open { display:flex; }
+.g-lightbox.visible { opacity:1; }
+.g-lb-overlay { position:absolute; top:0;left:0;width:100%;height:100%; background:var(--overlay-bg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+.g-lb-close { position:absolute; top:22px; right:32px; font-size:2.8rem; line-height:1; color:#fff; cursor:pointer; z-index:10; transition:transform 0.3s,color 0.3s; user-select:none; }
+.g-lb-close:hover { color:var(--primary); transform:scale(1.15) rotate(90deg); }
+.g-lb-content { position:relative; z-index:5; display:flex; flex-direction:column; align-items:center; max-width:90vw; max-height:90vh; }
+.g-lb-img { max-width:100%; max-height:78vh; object-fit:contain; border-radius:14px; box-shadow:0 10px 60px rgba(0,0,0,0.85); border:1px solid rgba(255,255,255,0.06); opacity:0; transform:scale(0.9); transition:opacity 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+.g-lightbox.visible .g-lb-img { opacity:1; transform:scale(1); }
+.g-lb-img.fade-out { opacity:0; transform:scale(0.94); }
+.g-lb-caption { margin-top:16px; font-family:var(--font-d); font-size:1rem; font-weight:600; color:#fff; text-align:center; opacity:0.9; }
+/* Nav arrows */
+.g-lb-prev,.g-lb-next { position:absolute; top:50%; transform:translateY(-50%); z-index:10; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#fff; width:56px; height:56px; border-radius:50%; cursor:pointer; font-size:1.6rem; font-weight:bold; display:flex; align-items:center; justify-content:center; transition:var(--tr); }
+.g-lb-prev { left:20px; }
+.g-lb-next { right:20px; }
+.g-lb-prev:hover,.g-lb-next:hover { background:var(--primary); border-color:var(--primary); box-shadow:0 0 20px rgba(124,58,237,0.5); }
+/* Counter */
+.g-lb-counter { position:absolute; top:22px; left:32px; font-family:var(--font-d); font-size:0.85rem; font-weight:600; color:rgba(255,255,255,0.65); z-index:10; }
+
+/* ===========================================================
+   RESPONSIVE
+   =========================================================== */
+@media (max-width:900px) { .g-grid { grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; } }
+@media (max-width:600px) {
+  .g-header h1 { font-size:2.2rem; }
+  .g-grid { grid-template-columns:repeat(2,1fr); gap:12px; padding:0 14px 60px; }
+  .g-card img { height:160px; }
+  .g-lb-prev { left:8px; }
+  .g-lb-next { right:8px; }
+  .g-lb-prev,.g-lb-next { width:44px;height:44px;font-size:1.3rem; }
+}
+@media (max-width:360px) { .g-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Background Orbs -->
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+
+  <!-- Gallery Navbar -->
+  <nav class="g-nav">
+    <div class="g-nav-inner">
+      <a href="index.html" class="g-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="index.html" class="g-logo">KSHITIZ<span>.</span></a>
+      <button class="g-theme-btn" id="gThemeBtn" title="Toggle dark/light">
+        <svg class="g-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="g-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="g-header">
+    <div class="g-header-tag">Creative Portfolio</div>
+    <h1>My Poster Gallery</h1>
+    <p>All social media designs, branding, marketing creatives &amp; campaign posters in one place.</p>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="g-filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="Creative Design Studio">Design Studio</button>
+    <button class="filter-btn" data-filter="Skyline Selfdrive">Skyline</button>
+    <button class="filter-btn" data-filter="INFRABLOC">INFRABLOC</button>
+    <button class="filter-btn" data-filter="NAPPA DORI">NAPPA DORI</button>
+    <button class="filter-btn" data-filter="SkillFlow">SkillFlow</button>
+    <button class="filter-btn" data-filter="Aone Digitals">Aone Digitals</button>
+    <button class="filter-btn" data-filter="Frame">Frame Designs</button>
+    <button class="filter-btn" data-filter="Portfolio">Portfolio Pages</button>
+  </div>
+
+  <!-- Poster Grid -->
+  <div class="g-grid" id="gGrid"></div>
+
+  <!-- Lightbox Modal -->
+  <div class="g-lightbox" id="gLightbox">
+    <div class="g-lb-overlay" id="gLbOverlay"></div>
+    <span class="g-lb-close" id="gLbClose">&times;</span>
+    <div class="g-lb-counter" id="gLbCounter"></div>
+    <button class="g-lb-prev" id="gLbPrev">&#8249;</button>
+    <div class="g-lb-content">
+      <img src="" alt="Poster" class="g-lb-img" id="gLbImg">
+      <div class="g-lb-caption" id="gLbCaption"></div>
+    </div>
+    <button class="g-lb-next" id="gLbNext">&#8250;</button>
+  </div>
+
+  <script>
+/* ============================================================
+   GALLERY DATA — all posters (media + frames + pages)
+   ============================================================ */
+const POSTERS = [
+  // Media JPGs
+  { src:"assets/media__1783928818172.jpg", title:"Google Ads Business Growth",           cat:"Creative Design Studio" },
+  { src:"assets/media__1783928818183.jpg", title:"Steer Brand To Next Level",            cat:"Skyline Selfdrive"      },
+  { src:"assets/media__1783928818269.jpg", title:"Merry Christmas Block Mortar",         cat:"INFRABLOC"              },
+  { src:"assets/media__1783927453300.jpg", title:"Blend In? Never — Campaign",           cat:"Creative Design Studio" },
+  { src:"assets/media__1783927453304.jpg", title:"Digital Solutions Promotion",          cat:"Creative Design Studio" },
+  { src:"assets/media__1783927453316.jpg", title:"Brand Identity Design Services",       cat:"Creative Design Studio" },
+  { src:"assets/media__1783927453324.jpg", title:"Empower Your Brand Campaign",          cat:"Creative Design Studio" },
+  { src:"assets/media__1783927453331.jpg", title:"Social Media Management Diagram",      cat:"Creative Design Studio" },
+  { src:"assets/media__1783928818193.jpg", title:"Weekend Relax & Recharge",             cat:"Creative Design Studio" },
+  { src:"assets/media__1783928818199.jpg", title:"Services Showcase Strategy",           cat:"Creative Design Studio" },
+  { src:"assets/media__1783929311934.jpg", title:"Republic Day Campaign",                cat:"Creative Design Studio" },
+  { src:"assets/media__1783929311961.jpg", title:"Orry Cars Fleet Campaign",             cat:"Skyline Selfdrive"      },
+  { src:"assets/media__1783929311969.jpg", title:"Corporate SCS Booking Promo",          cat:"Skyline Selfdrive"      },
+  { src:"assets/media__1783929874878.jpg", title:"Impossible — Creative Campaign",       cat:"Creative Design Studio" },
+  { src:"assets/media__1783929874887.jpg", title:"Sharp Leads for Social & Web",         cat:"Creative Design Studio" },
+  { src:"assets/media__1783929874898.jpg", title:"Durable ACC Blocks Promotion",         cat:"INFRABLOC"              },
+  { src:"assets/media__1783929874907.jpg", title:"Quality Social Media Designs",         cat:"Creative Design Studio" },
+  { src:"assets/media__1783929912450.jpg", title:"Black Apron Leather Loafers",          cat:"NAPPA DORI"             },
+  // Frame PNGs
+  { src:"assets/Frame 110.png",        title:"Creative Frame Design 110",     cat:"Frame" },
+  { src:"assets/Frame 151 (2).png",    title:"Brand Campaign Visual 151",     cat:"Frame" },
+  { src:"assets/Frame 158.png",        title:"Marketing Creative 158",        cat:"Frame" },
+  { src:"assets/Frame 159.png",        title:"Social Media Post 159",         cat:"Frame" },
+  { src:"assets/Frame 160.png",        title:"Brand Visual Design 160",       cat:"Frame" },
+  { src:"assets/Frame 161.png",        title:"Campaign Creative 161",         cat:"Frame" },
+  { src:"assets/Frame 168 (1).png",    title:"Digital Marketing Post 168",    cat:"Frame" },
+  { src:"assets/Frame 172 (2).png",    title:"Creative Visual 172",           cat:"Frame" },
+  { src:"assets/Frame 193 (1).png",    title:"Brand Design 193",              cat:"Frame" },
+  { src:"assets/Frame 194 (1).png",    title:"Marketing Creative 194",        cat:"Frame" },
+  { src:"assets/Frame 195 (1).png",    title:"Social Media Design 195",       cat:"Frame" },
+  { src:"assets/Frame 198 (1).png",    title:"Campaign Visual 198",           cat:"Frame" },
+  { src:"assets/Frame 203.png",        title:"Design Creative 203",           cat:"Frame" },
+  { src:"assets/Frame 234.png",        title:"Social Media Post 234",         cat:"Frame" },
+  { src:"assets/Frame 235.png",        title:"Brand Visual 235",              cat:"Frame" },
+  { src:"assets/Frame 236.png",        title:"Marketing Design 236",          cat:"Frame" },
+  { src:"assets/Frame 237.png",        title:"Creative Campaign 237",         cat:"Frame" },
+  { src:"assets/Frame 240.png",        title:"Brand Post 240",                cat:"Frame" },
+  { src:"assets/Frame 244.png",        title:"Social Media Creative 244",     cat:"Frame" },
+  { src:"assets/Frame 245 (1).png",    title:"Campaign Design 245",           cat:"Frame" },
+  { src:"assets/Frame 245.png",        title:"Brand Creative 245 Alt",        cat:"Frame" },
+  { src:"assets/Frame 246.png",        title:"Marketing Post 246",            cat:"Frame" },
+  { src:"assets/Frame 247.png",        title:"Social Design 247",             cat:"Frame" },
+  { src:"assets/Frame 248.png",        title:"Creative Visual 248",           cat:"Frame" },
+  { src:"assets/Frame 249.png",        title:"Campaign Creative 249",         cat:"Frame" },
+  // Portfolio pages
+  { src:"assets/page1.1.png", title:"Portfolio — Page 1.1", cat:"Portfolio" },
+  { src:"assets/page1.2.png", title:"Portfolio — Page 1.2", cat:"Portfolio" },
+  { src:"assets/page1.3.png", title:"Portfolio — Page 1.3", cat:"Portfolio" },
+  { src:"assets/page2.png",   title:"Portfolio — Page 2",   cat:"Portfolio" },
+  { src:"assets/page3.png",   title:"Portfolio — Page 3",   cat:"Portfolio" },
+  { src:"assets/page4.png",   title:"Portfolio — Page 4",   cat:"Portfolio" }
+];
+
+let filteredPosters = [...POSTERS];
+let activeLbIdx = 0;
+
+/* ---- Theme sync from localStorage ---- */
+const savedTheme = localStorage.getItem('ks-theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+const gThemeBtn = document.getElementById('gThemeBtn');
+if (gThemeBtn) {
+  gThemeBtn.addEventListener('click', () => {
+    const cur  = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('ks-theme', next);
+  });
+}
+
+/* ---- Build grid ---- */
+function buildGrid(list) {
+  const grid = document.getElementById('gGrid');
+  grid.innerHTML = '';
+  list.forEach((poster, idx) => {
+    const card = document.createElement('div');
+    card.className = 'g-card';
+    card.setAttribute('data-idx', idx);
+    card.innerHTML = `
+      <img src="${poster.src}" alt="${poster.title}" loading="lazy">
+      <div class="g-card-view-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <div class="g-card-overlay">
+        <div class="g-card-title">${poster.title}</div>
+        <div class="g-card-cat">${poster.cat}</div>
+      </div>`;
+    /* hover dim siblings */
+    card.addEventListener('mouseenter', () => grid.classList.add('has-hover'));
+    card.addEventListener('mouseleave', () => grid.classList.remove('has-hover'));
+    /* click → lightbox */
+    card.addEventListener('click', () => openLb(idx));
+    grid.appendChild(card);
+  });
+}
+
+buildGrid(filteredPosters);
+
+/* ---- Filter ---- */
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  filteredPosters = f === 'all' ? [...POSTERS] : POSTERS.filter(p => p.cat.includes(f) || p.src.includes(f.toLowerCase()));
+  buildGrid(filteredPosters);
+});
+
+/* ---- Lightbox ---- */
+const lb       = document.getElementById('gLightbox');
+const lbImg    = document.getElementById('gLbImg');
+const lbCap    = document.getElementById('gLbCaption');
+const lbCtr    = document.getElementById('gLbCounter');
+const lbClose  = document.getElementById('gLbClose');
+const lbPrev   = document.getElementById('gLbPrev');
+const lbNext   = document.getElementById('gLbNext');
+const lbOverlay= document.getElementById('gLbOverlay');
+
+function openLb(idx) {
+  activeLbIdx = idx;
+  setLbContent(true);
+  lb.style.display = 'flex';
+  lb.classList.add('open');
+  requestAnimationFrame(() => requestAnimationFrame(() => lb.classList.add('visible')));
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb() {
+  lb.classList.remove('visible');
+  setTimeout(() => { lb.classList.remove('open'); lb.style.display = 'none'; lbImg.src = ''; }, 370);
+  document.body.style.overflow = '';
+}
+
+function setLbContent(immediate) {
+  const p = filteredPosters[activeLbIdx];
+  if (!p) return;
+  lbCtr.textContent = `${activeLbIdx + 1} / ${filteredPosters.length}`;
+  if (immediate) {
+    lbImg.src = p.src;
+    lbCap.textContent = `${p.title}  —  ${p.cat}`;
+  } else {
+    lbImg.classList.add('fade-out');
+    setTimeout(() => {
+      lbImg.src = p.src;
+      lbCap.textContent = `${p.title}  —  ${p.cat}`;
+      lbImg.classList.remove('fade-out');
+    }, 200);
+  }
+}
+
+function prevLb() { activeLbIdx = (activeLbIdx - 1 + filteredPosters.length) % filteredPosters.length; setLbContent(false); }
+function nextLb() { activeLbIdx = (activeLbIdx + 1) % filteredPosters.length; setLbContent(false); }
+
+lbClose.addEventListener('click',  closeLb);
+lbOverlay.addEventListener('click', closeLb);
+lbPrev.addEventListener('click',   prevLb);
+lbNext.addEventListener('click',   nextLb);
+
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLb();
+  if (e.key === 'ArrowLeft')  prevLb();
+  if (e.key === 'ArrowRight') nextLb();
+});
+
+/* Touch swipe inside lightbox */
+let swX = 0;
+lb.addEventListener('touchstart', e => { swX = e.touches[0].clientX; }, { passive:true });
+lb.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - swX;
+  if (Math.abs(dx) > 50) { if (dx < 0) nextLb(); else prevLb(); }
+}, { passive:true });
+  </script>
+</body>
+</html>
